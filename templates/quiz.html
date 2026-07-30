@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Estimation Quiz</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+        <link rel="stylesheet" href="https://cdn.simplecss.org/simple.css">
+    </head>
+    <body>
+        <main class="container">
+            <h1>Estimation Quiz</h1>
+
+            <nav>
+                <ul>
+                    <li><a href="/">Quiz</a></li>
+                    <li><a href="/results">Results</a></li>
+                    <li><a href="/stats">Statistics</a></li>
+                </ul>
+            </nav>
+
+            <!-- Display flash messages -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <p role="alert">{{ message }}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            {% if accessed_results_but_not_completed %}
+            <h6>You need to complete the quiz before you can see your results!</h6>
+            {% endif %}
+
+            <h2>Instructions</h2>
+            <p>Welcome to the estimation quiz! This is not a traditional quiz where you input an answer. Instead, you answer the question with a range you believe the answer falls in.
+                Even if you get the answer in the range, a smaller range gets more points rewarded than a larger one. Precision is rewarded.
+                If your range does not include the answer, you will still be given points based on how close to the answer your upper and lower bounds are. Score is out of 100.
+            </p>
+
+            <form method="POST" action="/submit">
+                <ol>
+                    {% for q in questions %}
+                    <li>
+                        <h4>{{ q.question }}</h4>
+                        <h5>Category: {{ q.category | capitalize}}</h4>
+                        <fieldset class="range-group">
+                            <label>Min <input type="number" id="min_{{ q.id }}" name="min_{{ q.id }}" step="any"></label>
+                            <span class="range-sep"></span>
+                            <label>Max <input type="number" id="max_{{ q.id }}" name="max_{{ q.id }}" step="any"></label>
+                        </fieldset>
+                    </li>
+                    {% endfor %}
+                </ol>
+                <button type="/submit">Submit</button>
+            </form>
+        </main>
+    </body>
+</html>

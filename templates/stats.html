@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Estimation Quiz Statistics</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+        <link rel="stylesheet" href="https://cdn.simplecss.org/simple.css">
+    </head>
+    <body>
+        <main class="container">
+            <h1>Estimation Quiz Statistics</h1>
+
+            <nav>
+                <ul>
+                    <li><a href="/">Quiz</a></li>
+                    <li><a href="/results">Results</a></li>
+                    <li><a href="/stats">Statistics</a></li>
+                </ul>
+
+            </nav>
+
+            <div>
+                <h2>Total submissions: {{ total_subs }}</h2>
+            </div>
+            <div>
+                <fieldset>
+                    <h2>Scoring Statistics</h3>
+                    <h5>Average Correct Answer Rate: {{ average_hit }}%</h5>
+                    <h5>Average Score: {{ average_score }}</h5>
+                </fieldset>
+            </div>
+            <div>
+                <fieldset>
+                    <h2>Question Statistics</h3>
+                    <h5>Easiest Question: {{ easyQ }}</p>
+                    <h5>Hardest Question: {{ hardQ }}</p>
+                </fieldset>
+            </div>
+            <div>
+                <fieldset>
+                    <h2>Category Statistics</h3>
+                    <h5>Easiest Category: {{ easyC | capitalize }}</h5>
+                    <h5>Hardest Category: {{ hardC | capitalize }}</h5>
+                </fieldset>
+            </div>
+        </main>
+    </body>
+</html>

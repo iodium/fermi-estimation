@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Estimation Quiz Statistics</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+        <link rel="stylesheet" href="https://cdn.simplecss.org/simple.css">
+    </head>
+    <body>
+        <main class="container">
+            <h1>Quiz Results</h1>
+            <nav>
+                <ul>
+                    <li><a href="/">Quiz</a></li>
+                    <li><a href="/results">Results</a></li>
+                    <li><a href="/stats">Statistics</a></li>
+                </ul>
+            </nav>
+
+            {% if completed_but_tried_to_access_again %}
+                <h6>You've already completed the quiz for today!</h6>
+            {% endif %}
+            
+            <ol>
+                {% for q in answers %}
+                <li>
+                <fieldset>
+                    <h3>{{ q.question }}</h3>
+                    {% if q.hit %}
+                        <h4>Answered Correctly</h4>
+                    {% else %}
+                        <h4>Answered Incorrectly</h4>
+                    {% endif %}
+                    <h5>Category: {{ q.category | capitalize}}</h5>
+                    <h5>Correct Answer: {{ q.display }}</h5>
+                    <h5>You answered: {{ q.user_answer }}</h5>
+                    <h5>Score: {{ q.score | round(2) }}</h5>
+                </fieldset>
+                </li>
+                {% endfor %}
+            </ol>
+        </main>
+    </body>
+</html>

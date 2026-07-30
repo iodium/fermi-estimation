@@ -1,0 +1,38 @@
+.range-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            }
+.range-group input {
+    width: 100px; /* keeps them from stretching full-width */
+    }
+.range-sep {
+    color: #666;
+    }
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    background-color: #333;
+        }
+nav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    }
+
+nav li a:hover {
+    background-color: #111;
+    }
+
+li::marker {
+    font-size: 36px;
+    font-weight: bold;
+}
+
+fieldset h5 {
+    display: block;
+}
